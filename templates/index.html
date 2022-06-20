@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Janky Guestbook</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Guestbook</h1>
+    <center>
+    <form action="/post" method="post">
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name">
+        <br>
+        <label for="comment">Comment:</label>
+        <br>
+        <textarea name="comment" id="comment" cols="40" rows="10"></textarea>
+        <br>
+        <input type="submit" value="Submit" id="submit">
+    </form>
+    </center>
+    {% for comment in names %}
+        <hr>
+        <p>Comment by <b>{{ comment["name"] }} on {{ comment["date"] }}</b></p>
+            {% for line in comment["comment"].split("\n") %}
+                <p>{{ line }}</p>
+            {% endfor %}
+    {% endfor %}
+        <hr>
+    <style>
+            @import url('https://fonts.googleapis.com/css2?family=Tajawal&display=swap');
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: black;
+            color: white;
+        }
+        input[type=submit] {
+            background-color: gray;
+            color:white;
+            border-radius: 2px;
+            border: none;
+            text-decoration: none;
+        }
+        input[type=text] {
+            background-color: gray;
+            color:white;
+            border-radius: 2px;
+            border: none;
+            text-decoration: none;
+        }
+        textarea {
+            background-color: gray;
+            color:white;
+            border-radius: 2px;
+            border: none;
+            text-decoration: none;
+        }
+    </style>
+</body>
+</html>
