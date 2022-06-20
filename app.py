@@ -5,6 +5,7 @@ import os
 import time
 import json
 app = Flask(__name__)
+print("Janky Commenting")
 # check if the database in json exists, if not create one.
 if exists("./comments.json"):
     file = open("./comments.json","r")
@@ -12,7 +13,7 @@ if exists("./comments.json"):
     file.close()
 else:
     print("Failed to find the comments file, Creating new one")
-    names = []
+    names = [1]
     file = open("./comments.json","w")
     file.write(json.dumps(names))
     file.close()
@@ -26,7 +27,8 @@ def post():
         if len(request.form['name']) > 21:
             return redirect("/", code=302)
         else:
-            names.append({"name":request.form['name'],"comment":request.form['comment'],"date":time.strftime("%d-%m-%Y")})
+            names.append({"name":request.form['name'],"comment":request.form['comment'],"date":time.strftime("%d-%m-%Y"),"id":names[0]})
+            names[0] += 1
             file = open("./comments.json","w")
             file.write(json.dumps(names))
             file.close()

@@ -20,9 +20,9 @@
         <input type="submit" value="Submit" id="submit">
     </form>
     </center>
-    {% for comment in names %}
+    {% for comment in names[1:] %}
         <hr>
-        <p>Comment by <b>{{ comment["name"] }} on {{ comment["date"] }}</b></p>
+        <p>Signed by <b>{{ comment["name"] }} on {{ comment["date"] }}, ID: {{comment["id"]}}</b></p>
             {% for line in comment["comment"].split("\n") %}
                 <p>{{ line }}</p>
             {% endfor %}
